@@ -44,7 +44,7 @@ class Collector(object):
         # creating CSV header
         with open(self.dump, "w", newline='', encoding="utf-8") as save_file:
             writer = csv.writer(save_file)
-            writer.writerow(["Source", "utime", "Text"])
+            writer.writerow(["Source", "utime", "Text", "Link"])
 
     def strip(self, string):
         """Helping function to remove all non alphanumeric characters"""
@@ -100,6 +100,14 @@ class Collector(object):
                     cleantext = BeautifulSoup(hide.get_attribute('innerHTML'),$
                     text += self.strip(cleantext)
                 analysis.append(text)
+
+                link = ""
+                link_elements = post.find_elements_by_css_selector(
+                    "._6m6")
+                for a in link_elements:
+                    # print(a.text)
+                    link = a.find_element_by_tag_name('a').get_attribute('href')
+
 
                 # Write row to csv
                 writer.writerow(analysis)
