@@ -32,7 +32,14 @@ class Collector(object):
         self.depth = depth + 1
         self.delay = delay
         # browser instance
-        self.browser = webdriver.Firefox()
+        # -- Firefox Browser
+        # self.browser = webdriver.Firefox()
+        # -- ChromeDriver
+        chromeOptions = webdriver.ChromeOptions()
+        chromeOptions.add_argument('--headless')
+        prefs={"profile.managed_default_content_settings.images": 2, 'disk-cache-size': 2147483647 }
+        chromeOptions.add_experimental_option('prefs', prefs)
+        self.browser = webdriver.Chrome(chrome_options=chromeOptions)
 
         # creating CSV header
         with open(self.dump, "w", newline='', encoding="utf-8") as save_file:
