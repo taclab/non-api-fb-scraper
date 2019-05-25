@@ -92,9 +92,13 @@ class Collector(object):
                 # Creating post text entry
                 text = ""
                 text_elements = post.find_elements_by_css_selector(
-                    "p")
+                    "[data-testid='post_message'] p")
                 for p in text_elements:
                     text += self.strip(p.text)
+                hide_elements = post.find_elements_by_css_selector("[data-test$
+                for hide in hide_elements:
+                    cleantext = BeautifulSoup(hide.get_attribute('innerHTML'),$
+                    text += self.strip(cleantext)
                 analysis.append(text)
 
                 # Write row to csv
