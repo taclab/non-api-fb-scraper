@@ -7,7 +7,7 @@ ____
 
 ### How to use it?
 
-Firstly, make sure you have selenium >= 3.141.0 and FireFox installed.
+Firstly, make sure you have selenium >= 3.141.0, FireFox & ChromeDriver installed.
 
 Use `scraper.py` to collect the data. 
 ```
